@@ -29,7 +29,7 @@ public class Leg extends AbstractEntity {
 	@NotBlank
 	@Pattern(regexp = "^[A-Z]{3}-[0-9]{4}$")  	// tres letras mayúsculas
 	@Column(unique = true)
-	String				flightNumber;
+	private String				flightNumber;
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date		scheduledDeparture;
