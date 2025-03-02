@@ -12,7 +12,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import acme.client.components.basis.AbstractEntity;
+import org.dom4j.tree.AbstractEntity;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +29,7 @@ public class Airline extends AbstractEntity {
 
     @NotBlank
     @Column(unique = true)
-    @Pattern(regexp = "^[A-Z]{2}X$", message = "El código IATA debe tener 3 letras mayúsculas y terminar en 'X'.") 
+    @Pattern(regexp = "^[A-Z]{2}X$")  
     private String IATAcode;
 
     @NotBlank
