@@ -38,25 +38,27 @@ public class Leg extends AbstractEntity {
 	private String				flightNumber;
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date		scheduledDeparture;
+	private Date				scheduledDeparture;
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private float		hours;
-	private Date		scheduledArrival;
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Status		status;
+	private Date				scheduledArrival;
+
+	private float				hours;
 
 	@NotNull
-	private Airport		departureAirport;
+	@Enumerated(EnumType.STRING)
+	private Status				status;
+
 	@NotNull
-	private Airport		arrivalAirport;
+	private Airport				departureAirport;
 	@NotNull
-	private Aircraft	aircraft;
+	private Airport				arrivalAirport;
+	@NotNull
+	private Aircraft			aircraft;
 
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	private Flight		flight;
+	private Flight				flight;
 }
