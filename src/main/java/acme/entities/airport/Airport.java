@@ -23,32 +23,32 @@ public class Airport extends AbstractEntity {
 
 	@NotBlank
 	@Size(max = 50)
-	String				name;
+	String name;
 
 	@NotBlank
 	@Pattern(regexp = "^[A-Z]{3}$")  	// tres letras mayúsculas
 	@Column(unique = true)
-	String				iataCode;
+	String iataCode;
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	OperationalScope	operationalScope;
+	OperationalScope operationalScope;
 
 	@NotNull
-  @Size(max = 50)
-	String	city;
+  	@Size(max = 50)
+	String city;
 
 	@NotBlank
 	@Size(max = 50)
-	String				country;
+	String country;
 
-	String				website;
+	String website;
 
 	@Email
-	String				email;
+	String email;
 
 	@NotBlank
 	@Pattern(regexp = "\\+?\\d{6,15}$")
-	String				phoneNumber;
+	String phoneNumber;
 
 }
