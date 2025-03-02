@@ -6,12 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
+import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,31 +27,34 @@ public class FligthCrewMember extends AbstractRole {
 
 	// Attributes -------------------------------------------------------------
 
-	@NotNull
+	@Mandatory
 	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	@NotBlank
-	String						employeeCode;
+	private String				employeeCode;
 
+	@Mandatory
 	@Pattern(regexp = "^\\+?\\d{6,15}$")
 	@NotBlank
-	String						phoneNumber;
+	private String				phoneNumber;
 
+	@Mandatory
 	@Size(max = 255)
 	@NotBlank
-	String						lenguageKills;
+	private String				lenguageKills;
 
-	@NotNull
+	@Mandatory
 	@Enumerated(EnumType.STRING)
-	Status						status;
+	private Status				status;
 
+	@Mandatory
 	@NotBlank
-	String						airline;
+	private String				airline;
 
-	@NotNull
-	Money						salary;
+	@Mandatory
+	private Money				salary;
 
 	@Optional
-	Integer						yearsExperience;
+	private Integer				yearsExperience;
 
 }
