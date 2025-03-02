@@ -1,3 +1,3 @@
 key,key:userAccount,identifier-number,years-of-experience,birth-date,picture-link
-airline-manager-01,user-account-airline-manager-01,AES-000000,25,2003/06/03 5:40,null
-airline-manager-02,user-account-airline-manager-02,AES-000001,10,2005/02/21 10:00,https://acme-manager.com
+airline-manager-01,user-account-airline-manager-01,AES000000,25,2003/06/03 5:40,null
+airline-manager-02,user-account-airline-manager-02,AES000001,10,2005/02/21 10:00,https://acme-manager.com

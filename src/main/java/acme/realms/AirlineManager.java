@@ -27,7 +27,7 @@ public class AirlineManager extends AbstractRole {
 
 	// Attributes -------------------------------------------------------------
 	@NotBlank
-	@Pattern(regexp = "^[A-Z]{2,3}-\\d{6}$")
+	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	private String				identifierNumber;
 
