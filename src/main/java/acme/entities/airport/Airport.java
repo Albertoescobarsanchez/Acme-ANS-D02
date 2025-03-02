@@ -30,7 +30,7 @@ public class Airport {
 	OperationalScope operationalScope;
 
 	@NotNull
-	@Max(50)
+	@Size(max = 50)
 	String	city;
 
 	@NotNull
