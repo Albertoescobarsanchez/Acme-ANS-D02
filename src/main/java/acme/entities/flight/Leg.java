@@ -26,6 +26,12 @@ import lombok.Setter;
 @Setter
 public class Leg extends AbstractEntity {
 
+	// Serialisation version --------------------------------------------------
+
+	private static final long	serialVersionUID	= 1L;
+
+	// Attributes -------------------------------------------------------------
+
 	@NotBlank
 	@Pattern(regexp = "^[A-Z]{3}-[0-9]{4}$")  	// tres letras mayúsculas
 	@Column(unique = true)
