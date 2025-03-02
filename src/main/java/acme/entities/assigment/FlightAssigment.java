@@ -2,12 +2,11 @@
 package acme.entities.assigment;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -19,6 +18,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.entities.flight.Leg;
+import acme.realms.FligthCrewMember;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,8 +35,13 @@ public class FlightAssigment extends AbstractEntity {
 
 	@Mandatory
 	@Valid
-	@OneToMany
-	private List<Leg>			leg;
+	@ManyToOne
+	private Leg					leg;
+
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private FligthCrewMember	member;
 
 	@Mandatory
 	@NotNull
