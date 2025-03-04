@@ -29,7 +29,7 @@ public class Airport extends AbstractEntity {
 	// Attributtes ------------------------------
 
 	@Mandatory
-	@ValidString
+	@Size(max = 50)
 	@Automapped
 	private String				name;
 
