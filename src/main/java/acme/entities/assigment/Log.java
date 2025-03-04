@@ -14,6 +14,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,18 +38,22 @@ public class Log extends AbstractEntity {
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
 	@Past
+	@Automapped
 	private Date				moment;
 
 	@Mandatory
 	@Size(max = 50)
+	@Automapped
 	private String				type;
 
 	@Mandatory
 	@Size(max = 255)
+	@Automapped
 	private String				description;
 
 	@Min(0)
 	@Max(10)
+	@Automapped
 	private int					severityLevel;
 
 }
