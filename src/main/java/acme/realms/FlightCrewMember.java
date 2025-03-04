@@ -19,7 +19,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class FligthCrewMember extends AbstractRole {
+public class FlightCrewMember extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 
@@ -41,7 +41,7 @@ public class FligthCrewMember extends AbstractRole {
 	@Mandatory
 	@Size(max = 255)
 	@NotBlank
-	private String				lenguageKills;
+	private String				languageSkills;
 
 	@Mandatory
 	@Enumerated(EnumType.STRING)
