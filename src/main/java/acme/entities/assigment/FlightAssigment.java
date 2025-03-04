@@ -15,6 +15,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.entities.flight.Leg;
@@ -36,6 +37,7 @@ public class FlightAssigment extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne
+	@Automapped
 	private Leg					leg;
 
 	@Mandatory
@@ -46,6 +48,7 @@ public class FlightAssigment extends AbstractEntity {
 	@Mandatory
 	@NotNull
 	@Enumerated(EnumType.STRING)
+	@Automapped
 	private Duty				duty;
 
 	@Mandatory
@@ -55,10 +58,16 @@ public class FlightAssigment extends AbstractEntity {
 
 	@Mandatory
 	@Enumerated(EnumType.STRING)
+	@Automapped
 	private Status				status;
 
 	@Size(max = 255)
 	@Optional
+	@Automapped
 	private String				remarks;
 
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				publish;
 }
