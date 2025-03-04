@@ -8,3 +8,9 @@ user-account-provider-03,true,"UserIdentity{name: 'Antonia', surname: 'אבטי�
 user-account-airline-manager-01,true,"UserIdentity{name: 'Alberto', surname: 'Escobar', email: 'manager1@acme.com'}",manager1,manager1
 user-account-airline-manager-02,true,"UserIdentity{name: 'Andrés', surname: 'Escobar', email: 'manager2@acme.com'}",manager2,manager2
 user-account-airline-manager-03,true,"UserIdentity{name: 'Anabel', surname: 'Escobar', email: 'manager3@acme.com'}",manager3,manager3
+user-account-flight-crew-member-01,true,"UserIdentity{name: 'Juan', surname: 'Gomez', email: 'member1@acme.com'}",member1,member1
+user-account-flight-crew-member-02,true,"UserIdentity{name: 'Antonio', surname: 'Lucena', email: 'member2@acme.com'}",member2,member2
+user-account-flight-crew-member-03,true,"UserIdentity{name: 'Manuel', surname: 'Montoya', email: 'member3@acme.com'}",member3,member3
+user-account-flight-crew-member-04,true,"UserIdentity{name: 'Fran', surname: 'Sanchez', email: 'member4@acme.com'}",member4,member4
+user-account-flight-crew-member-05,true,"UserIdentity{name: 'Pablo', surname: 'Garcia', email: 'member5@acme.com'}",member5,member5
+
