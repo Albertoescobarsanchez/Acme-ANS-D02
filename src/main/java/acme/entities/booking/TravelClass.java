@@ -1,5 +1,5 @@
 
-package acme.realms;
+package acme.entities.booking;
 
 public enum TravelClass {
 
