@@ -5,14 +5,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
+import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,39 +22,50 @@ import lombok.Setter;
 @Setter
 public class Airport extends AbstractEntity {
 
-	// Serialisation version --------------------------------------------------
+	// Serialisation version ---------------------
 
 	private static final long	serialVersionUID	= 1L;
 
-	// Attributes -------------------------------------------------------------
-	@NotBlank
-	@Size(max = 50)
-	String						name;
+	// Attributtes ------------------------------
 
-	@NotBlank
+	@Mandatory
+	@Size(max = 50)
+	@Automapped
+	private String				name;
+
+	@Mandatory
 	@Pattern(regexp = "^[A-Z]{3}$")  	// tres letras mayúsculas
 	@Column(unique = true)
 	private String				iataCode;
 
-	@NotNull
+	@Mandatory
 	@Enumerated(EnumType.STRING)
-	OperationalScope			operationalScope;
+	@Automapped
+	private OperationalScope	operationalScope;
 
-	@NotNull
-	@Max(50)
+	@Mandatory
+	@Size(max = 50)
+	@Automapped
 	private String				city;
 
-	@NotBlank
+	@Mandatory
 	@Size(max = 50)
+	@Automapped
 	private String				country;
 
+	@Optional
+	@ValidString
+	@Automapped
 	private String				website;
 
-	@Email
+	@Optional
+	@ValidEmail
+	@Automapped
 	private String				email;
 
-	@NotBlank
+	@Optional
 	@Pattern(regexp = "\\+?\\d{6,15}$")
+	@Automapped
 	private String				phoneNumber;
 
 }
