@@ -4,14 +4,17 @@ package acme.entities.flight;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Optional;
+import acme.realms.AirlineManager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,27 +29,32 @@ public class Flight extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 	@NotNull
 	@Size(max = 50)
-	private String	tag;
+	private String				tag;
 
-	private boolean	selfTransfer;
+	private boolean				selfTransfer;
 
-	private float	cost;
+	private float				cost;
 
 	@Optional
 	@Size(max = 255)
-	private String	description;
+	private String				description;
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date	scheduledDeparture;
+	private Date				scheduledDeparture;
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date	scheduledArrival;
+	private Date				scheduledArrival;
 
 	@NotBlank
-	private String	origin;
+	private String				origin;
 	@NotBlank
-	private String	destination;
+	private String				destination;
 
-	private int		layovers;
+	private int					layovers;
+
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	private AirlineManager		airlineManager;
 }
