@@ -11,13 +11,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidString;
 import acme.entities.flight.Leg;
 import acme.realms.FligthCrewMember;
 import lombok.Getter;
@@ -53,7 +53,7 @@ public class FlightAssigment extends AbstractEntity {
 
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
-	@Past
+	@ValidMoment(past = true)
 	private Date				lastUpdate;
 
 	@Mandatory
@@ -61,7 +61,7 @@ public class FlightAssigment extends AbstractEntity {
 	@Automapped
 	private Status				status;
 
-	@Size(max = 255)
+	@ValidString
 	@Optional
 	@Automapped
 	private String				remarks;
