@@ -7,17 +7,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.dom4j.tree.AbstractEntity;
+import org.springframework.data.annotation.Id;
 
+import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
+import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,31 +33,39 @@ public class Airline extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
-	@NotBlank
+	@Mandatory
 	@Size(max = 50)
+	@Automapped
 	private String				name;
 
 	@Id
-	@NotBlank
+	@Mandatory
 	@Column(unique = true)
 	@Pattern(regexp = "^[A-Z]{2}X$")
 	private String				iataCode;
 
-	@NotBlank
+	@Mandatory
+	@Automapped
 	private String				website;
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
+	@Automapped
 	private AirlineType			type;
 
-	@NotNull
+	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
+	@Automapped
 	private Date				foundationMoment;
 
+	@Optional
 	@Email
+	@Automapped
 	private String				email;
 
+	@Optional
 	@Pattern(regexp = "\\+?\\d{6,15}$")
+	@Automapped
 	private String				phoneNumber;
 
 }
