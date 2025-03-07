@@ -49,16 +49,15 @@ public class Flight extends AbstractEntity {
 	@Mandatory
 	@NotBlank
 	private String				origin;
+
 	@Mandatory
 	@NotBlank
 	private String				destination;
 
 	private int					layovers;
-	private String				destination;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
 	private AirlineManager		airlineManager;
-	private int					layovers;
 }
