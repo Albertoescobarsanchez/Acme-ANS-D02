@@ -17,7 +17,7 @@ public class FlightCrewMemberDashboard extends AbstractForm {
 	// Attributes -------------------------------------------------------------
 
 	private List<String>					destinations; //the last five destinations to which they have been assigned
-
+	private Integer							numberLegs;	//number of leg that have an activity log
 	private List<FlightCrewMember>			crews; //the crew members who were assigned with him
 	private Map<Status, FlightAssigment>	assigmentsByStatus; //their flight assignments grouped by their statuses;
 	private Double							average;		// average of the number of flight assignments they had in the last month
