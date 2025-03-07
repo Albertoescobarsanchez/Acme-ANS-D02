@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
@@ -16,6 +18,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +32,12 @@ public class FligthCrewMember extends AbstractRole {
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
+
+	@Mandatory
+	@Valid
+	@OneToOne
+	@Automapped
+	private Airline				airline;
 
 	@Mandatory
 	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
@@ -53,12 +62,6 @@ public class FligthCrewMember extends AbstractRole {
 	@Enumerated(EnumType.STRING)
 	@Automapped
 	private Status				status;
-
-	@Mandatory
-	@NotBlank
-	@Automapped
-	//----------------------------RELACION
-	private String				airline;
 
 	@Mandatory
 	@Automapped
