@@ -12,10 +12,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.validation.Mandatory;
 import acme.entities.airport.Aircraft;
 import acme.entities.airport.Airport;
 import lombok.Getter;
@@ -32,32 +32,33 @@ public class Leg extends AbstractEntity {
 
 	// Attributes -------------------------------------------------------------
 
+	@Mandatory
 	@NotBlank
 	@Pattern(regexp = "^[A-Z]{3}-[0-9]{4}$")  	// tres letras mayúsculas
 	@Column(unique = true)
 	private String				flightNumber;
-	@NotNull
+	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledDeparture;
 
-	@NotNull
+	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledArrival;
 
 	private float				hours;
 
-	@NotNull
+	@Mandatory
 	@Enumerated(EnumType.STRING)
 	private Status				status;
 
-	@NotNull
+	@Mandatory
 	private Airport				departureAirport;
-	@NotNull
+	@Mandatory
 	private Airport				arrivalAirport;
-	@NotNull
+	@Mandatory
 	private Aircraft			aircraft;
 
-	@NotNull
+	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
 	private Flight				flight;

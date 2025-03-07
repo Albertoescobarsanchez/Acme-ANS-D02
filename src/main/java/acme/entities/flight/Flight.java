@@ -7,10 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,29 +24,31 @@ public class Flight extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
-	@NotNull
+	@Mandatory
 	@Size(max = 50)
-	private String	tag;
+	private String				tag;
 
-	private boolean	selfTransfer;
+	private boolean				selfTransfer;
 
-	private float	cost;
+	private float				cost;
 
 	@Optional
 	@Size(max = 255)
-	private String	description;
-	@NotNull
+	private String				description;
+	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date	scheduledDeparture;
+	private Date				scheduledDeparture;
 
-	@NotNull
+	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date	scheduledArrival;
+	private Date				scheduledArrival;
 
+	@Mandatory
 	@NotBlank
-	private String	origin;
+	private String				origin;
+	@Mandatory
 	@NotBlank
-	private String	destination;
+	private String				destination;
 
-	private int		layovers;
+	private int					layovers;
 }
