@@ -7,7 +7,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
@@ -15,6 +14,8 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +34,7 @@ public class FligthCrewMember extends AbstractRole {
 	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	@NotBlank
+	@Automapped
 	private String				employeeCode;
 
 	@Mandatory
@@ -42,7 +44,7 @@ public class FligthCrewMember extends AbstractRole {
 	private String				phoneNumber;
 
 	@Mandatory
-	@Size(max = 255)
+	@ValidString
 	@NotBlank
 	@Automapped
 	private String				lenguageKills;
@@ -55,6 +57,7 @@ public class FligthCrewMember extends AbstractRole {
 	@Mandatory
 	@NotBlank
 	@Automapped
+	//----------------------------RELACION
 	private String				airline;
 
 	@Mandatory
@@ -63,6 +66,7 @@ public class FligthCrewMember extends AbstractRole {
 	private Money				salary;
 
 	@Optional
+	@ValidNumber
 	@Automapped
 	private Integer				yearsExperience;
 
