@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import acme.client.components.basis.AbstractRole;
@@ -31,6 +32,7 @@ public class Banned extends AbstractRole {
 	@Mandatory
 	@ValidString(max = 50)
 	@Automapped
+	@NotBlank
 	private String				name;
 
 	@Mandatory
@@ -42,16 +44,19 @@ public class Banned extends AbstractRole {
 	@Mandatory
 	@Pattern(regexp = "^[A-Z0-9]{6,9}$")
 	@Automapped
+	@NotBlank
 	private String				passport;
 
 	@Mandatory
 	@ValidString(max = 50)
 	@Automapped
+	@NotBlank
 	private String				nationaly;
 
 	@Mandatory
 	@ValidString //255 por defecto
 	@Automapped
+	@NotBlank
 	private String				reason;
 
 	@Mandatory
