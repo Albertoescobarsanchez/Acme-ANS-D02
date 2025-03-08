@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -30,10 +31,12 @@ public class AssistanceAgent extends AbstractRole {
 	private String				employeeCode;
 
 	@Mandatory
-	@Size(max = 255)
+	@Size(max = 255) 
 	private String				languages;
 
+
 	@Mandatory
+	@ManyToOne
 	private Airline				airline;
 
 	@Mandatory
