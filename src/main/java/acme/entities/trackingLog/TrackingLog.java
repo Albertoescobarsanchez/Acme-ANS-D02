@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,8 +21,8 @@ import lombok.Setter;
 public class TrackingLog extends AbstractEntity {
 
 	@Mandatory
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	@Automapped
 	private Date	updateMoment;
 
 	@Mandatory
@@ -30,11 +30,12 @@ public class TrackingLog extends AbstractEntity {
 	@Automapped
 	private String	step;
 
-	private int		resolutionPercentage;
+	@Mandatory
+	private Integer	resolutionPercentage;
 
-	private boolean	accepted;
+	@Mandatory
+	private Boolean	accepted;
 
-	@Optional
 	@Size(max = 255)
 	private String	resolution;
 
