@@ -21,7 +21,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Banned extends AbstractRole {
+public class BannedPassenger extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 
