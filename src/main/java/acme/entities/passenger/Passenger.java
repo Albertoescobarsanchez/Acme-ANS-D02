@@ -1,5 +1,5 @@
 
-package acme.realms;
+package acme.entities.passenger;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import acme.client.components.basis.AbstractRole;
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
@@ -26,7 +26,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class Passenger extends AbstractRole {
+public class Passenger extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
