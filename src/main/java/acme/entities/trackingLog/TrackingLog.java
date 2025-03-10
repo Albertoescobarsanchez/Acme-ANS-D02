@@ -4,14 +4,19 @@ package acme.entities.trackingLog;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidScore;
+import acme.client.components.validation.ValidString;
+import acme.entities.claim.Claim;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,23 +25,42 @@ import lombok.Setter;
 @Setter
 public class TrackingLog extends AbstractEntity {
 
+	// Serialisation version --------------------------------------------------
+
+	private static final long	serialVersionUID	= 1L;
+
+	// Attributes -------------------------------------------------------------
+
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date	updateMoment;
+	private Date				updateMoment;
 
 	@Mandatory
-	@Size(max = 50)
+	@ValidString(max = 50)
 	@Automapped
-	private String	step;
+	private String				step;
 
 	@Mandatory
-	private Integer	resolutionPercentage;
+	@ValidScore
+	@Automapped
+	private Double				resolutionPercentage;
 
 	@Mandatory
-	private Boolean	accepted;
+	@Automapped
+	private boolean				accepted;
 
-	@Size(max = 255)
-	private String	resolution;
+	@Optional
+	@ValidString
+	private String				resolution;
+
+	// Derived attributes -----------------------------------------------------
+
+	// Relationships ----------------------------------------------------------
+
+	@Mandatory
+	@ManyToOne(optional = false)
+	@Valid
+	private Claim				claim;
 
 }

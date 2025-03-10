@@ -6,14 +6,18 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidString;
+import acme.realms.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,25 +26,42 @@ import lombok.Setter;
 @Setter
 public class Claim extends AbstractEntity {
 
+	// Serialisation version --------------------------------------------------
+
+	private static final long	serialVersionUID	= 1L;
+
+	// Attributes -------------------------------------------------------------
+
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
-	@Automapped
-	private Date		registrationMoment;
+	@ValidMoment(past = true)
+	private Date				registrationMoment;
 
 	@Mandatory
 	@Automapped
-	@Email
-	private String		passengerEmail;
+	@ValidEmail
+	private String				passengerEmail;
 
 	@Mandatory
-	@Size(max = 255)
-	private String		description;
+	@ValidString
+	private String				description;
 
 	@Mandatory
 	@Enumerated(EnumType.STRING)
-	private ClaimType	type;
+	@Valid
+	@Automapped
+	private ClaimType			type;
 
 	@Mandatory
-	private Boolean		accepted;
+	@Automapped
+	private boolean				accepted; //cambiar a enumerado? PREGUNTAR
 
+	// Derived attributes -----------------------------------------------------
+
+	// Relationships ----------------------------------------------------------
+
+	@Mandatory
+	@ManyToOne(optional = false)
+	@Valid
+	private AssistanceAgent		assistenceAgent;
 }
