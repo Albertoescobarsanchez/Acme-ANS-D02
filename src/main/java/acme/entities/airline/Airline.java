@@ -9,17 +9,17 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-import org.springframework.data.annotation.Id;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidString;
+import acme.client.components.validation.ValidUrl;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,33 +33,35 @@ public class Airline extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
+
 	@Mandatory
-	@Size(max = 50)
+	@ValidString(max = 50)
 	@Automapped
 	private String				name;
 
-	@Id
 	@Mandatory
 	@Column(unique = true)
 	@Pattern(regexp = "^[A-Z]{2}X$")
 	private String				iataCode;
 
 	@Mandatory
+	@ValidUrl
 	@Automapped
 	private String				website;
 
-	@NotNull
+	@Mandatory
 	@Enumerated(EnumType.STRING)
+	@Valid
 	@Automapped
 	private AirlineType			type;
 
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
-	@Automapped
+	@ValidMoment(past = true)
 	private Date				foundationMoment;
 
 	@Optional
-	@Email
+	@ValidEmail
 	@Automapped
 	private String				email;
 
