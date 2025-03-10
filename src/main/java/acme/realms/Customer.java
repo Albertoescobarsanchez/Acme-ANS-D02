@@ -1,12 +1,8 @@
 
 package acme.realms;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Pattern;
 
@@ -15,7 +11,6 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidString;
-import acme.entities.booking.Booking;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -58,10 +53,5 @@ public class Customer extends AbstractRole {
 	@Optional
 	@Max(500000)
 	private float				earnedPoints;
-
-	@Mandatory
-	@Valid
-	@OneToMany(mappedBy = "customer")
-	private List<Booking>		bookings;
 
 }
