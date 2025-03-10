@@ -13,6 +13,8 @@ import lombok.Setter;
 @Setter
 public class CustomerDashboard extends AbstractForm {
 
+	// Serialisation identifier -----------------------------------------------
+
 	private static final long			serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
