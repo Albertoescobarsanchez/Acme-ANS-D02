@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
-import acme.entities.assigment.FlightAssignment;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Status;
 import acme.realms.FlightCrewMember;
 
