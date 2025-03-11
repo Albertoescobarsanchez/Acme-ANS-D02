@@ -3,13 +3,12 @@ package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Pattern;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,12 +25,12 @@ public class Customer extends AbstractRole {
 	// Attributtes ------------------------------
 
 	@Mandatory
-	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	private String				identifier;
 
 	@Mandatory
-	@Pattern(regexp = "\\+?\\d{6,15}$")
+	@ValidString(pattern = "\\+?\\d{6,15}$")
 	@Automapped
 	private String				phoneNumber;
 
@@ -41,17 +40,17 @@ public class Customer extends AbstractRole {
 	private String				physicalAddress;
 
 	@Mandatory
-	@ValidString
+	@ValidString(max = 50)
 	@Automapped
 	private String				city;
 
 	@Mandatory
-	@ValidString
+	@ValidString(max = 50)
 	@Automapped
 	private String				country;
 
 	@Optional
-	@Max(500000)
-	private float				earnedPoints;
+	@ValidNumber(max = 500000)
+	private Double				earnedPoints;
 
 }
