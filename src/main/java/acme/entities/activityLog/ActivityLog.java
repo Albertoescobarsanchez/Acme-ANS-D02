@@ -1,5 +1,5 @@
 
-package acme.entities.log;
+package acme.entities.activityLog;
 
 import java.util.Date;
 
@@ -15,14 +15,14 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.assigment.FlightAssignment;
+import acme.entities.flightAssignment.FlightAssignment;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Log extends AbstractEntity {
+public class ActivityLog extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
