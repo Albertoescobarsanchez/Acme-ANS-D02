@@ -3,15 +3,17 @@ package acme.entities.service;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.constraints.PositiveOrZero;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidPromotionCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,19 +36,20 @@ public class Service extends AbstractEntity {
 	@Mandatory
 	@ValidUrl
 	@Automapped
-	private String				picture;
+	private String				pictureLink;
 
 	@Mandatory
-	@PositiveOrZero
+	@ValidNumber(min = 0)
+	@Automapped
 	private Double				averageDwellTime;
 
 	@Optional
 	@Column(unique = true)
-	@ValidString(pattern = "^[A-Z]{4}-[0-9]{2}$")
+	@ValidPromotionCode
 	private String				promotionCode;
 
 	@Optional
-	@ValidNumber
+	@ValidMoney
 	@Automapped
-	private Double				discount;
+	private Money				discount;
 }
