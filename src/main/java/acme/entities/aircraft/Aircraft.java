@@ -51,7 +51,7 @@ public class Aircraft extends AbstractEntity {
 	private Status				status;
 
 	@Optional
-	@ValidString(max = 255)
+	@ValidString
 	@Automapped
 	private String				details;
 
