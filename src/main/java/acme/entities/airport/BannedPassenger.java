@@ -1,5 +1,5 @@
 
-package acme.realms;
+package acme.entities.airport;
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-import acme.client.components.basis.AbstractRole;
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
@@ -21,7 +21,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class BannedPassenger extends AbstractRole {
+public class BannedPassenger extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
