@@ -35,7 +35,7 @@ public class Log extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private FlightAssigment		assigment;
+	private FlightAssignment	assigment;
 
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
