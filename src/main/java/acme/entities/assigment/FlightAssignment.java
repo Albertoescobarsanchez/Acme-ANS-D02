@@ -4,13 +4,10 @@ package acme.entities.assigment;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -33,31 +30,23 @@ public class FlightAssignment extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
-
-	@Mandatory
-	@Valid
-	@ManyToOne
-	@Automapped
-	private Leg					leg;
-
 	@Mandatory
 	@Valid
 	@ManyToOne
 	private FlightCrewMember	member;
 
 	@Mandatory
-	@NotNull
-	@Enumerated(EnumType.STRING)
+	@Valid
 	@Automapped
 	private Duty				duty;
 
 	@Mandatory
-	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				lastUpdate;
 
 	@Mandatory
-	@Enumerated(EnumType.STRING)
+	@Valid
 	@Automapped
 	private Status				status;
 
@@ -70,4 +59,9 @@ public class FlightAssignment extends AbstractEntity {
 	@Valid
 	@Automapped
 	private Boolean				publish;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Leg					leg;
 }

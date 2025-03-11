@@ -1,5 +1,5 @@
 
-package acme.entities.assigment;
+package acme.entities.log;
 
 import java.util.Date;
 
@@ -8,9 +8,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -18,6 +15,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.entities.assigment.FlightAssignment;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,33 +31,28 @@ public class Log extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private FlightAssignment	assigment;
-
-	@Mandatory
-	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment(past = true)
-	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
 
 	@Mandatory
 	@ValidString(max = 50)
-	@NotBlank
 	@Automapped
 	private String				type;
 
 	@Mandatory
 	@ValidString
-	@NotBlank
 	@Automapped
 	private String				description;
 
-	@Min(0)
-	@Max(10)
-	@ValidNumber
-	@Automapped
 	@Mandatory
-	private int					severityLevel;
+	@ValidNumber(min = 0, max = 10)
+	@Automapped
+	private Integer				severityLevel;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private FlightAssignment	assigment;
 
 }
