@@ -6,7 +6,7 @@ import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
 import acme.entities.assigment.FlightAssignment;
-import acme.entities.flight.Status;
+import acme.entities.leg.Status;
 import acme.realms.FlightCrewMember;
 
 public class FlightCrewMemberDashboard extends AbstractForm {
