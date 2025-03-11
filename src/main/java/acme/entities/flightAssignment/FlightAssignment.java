@@ -1,30 +1,32 @@
 
-package acme.entities.assigment;
+package acme.entities.flightAssignment;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.entities.leg.Leg;
+import acme.realms.FlightCrewMember;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Log extends AbstractEntity {
+public class FlightAssignment extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
@@ -34,32 +36,38 @@ public class Log extends AbstractEntity {
 
 	@Mandatory
 	@Valid
-	@ManyToOne(optional = false)
-	private FlightAssignment	assigment;
+	@ManyToOne
+	@Automapped
+	private Leg					leg;
+
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private FlightCrewMember	member;
+
+	@Mandatory
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Automapped
+	private Duty				duty;
 
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment(past = true)
-	@Automapped
-	private Date				moment;
+	private Date				lastUpdate;
 
 	@Mandatory
-	@ValidString(max = 50)
-	@NotBlank
+	@Enumerated(EnumType.STRING)
 	@Automapped
-	private String				type;
+	private Status				status;
 
-	@Mandatory
 	@ValidString
-	@NotBlank
+	@Optional
 	@Automapped
-	private String				description;
+	private String				remarks;
 
-	@Min(0)
-	@Max(10)
-	@ValidNumber
-	@Automapped
 	@Mandatory
-	private int					severityLevel;
-
+	@Valid
+	@Automapped
+	private Boolean				publish;
 }
