@@ -5,7 +5,7 @@ import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
 import acme.entities.airport.Airport;
-import acme.entities.flight.Status;
+import acme.entities.leg.Status;
 import lombok.Getter;
 import lombok.Setter;
 
