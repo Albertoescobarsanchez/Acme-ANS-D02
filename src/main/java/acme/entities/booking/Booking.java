@@ -2,14 +2,12 @@
 package acme.entities.booking;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -22,7 +20,9 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
+import acme.entities.flight.Flight;
 import acme.entities.passenger.Passenger;
+
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -67,8 +67,4 @@ public class Booking extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private Customer			customer;
 
-	@Mandatory
-	@Valid
-	@OneToMany(mappedBy = "booking")
-	private List<Passenger>		passenger;
 }
