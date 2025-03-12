@@ -49,7 +49,7 @@ public class FlightCrewMember extends AbstractRole {
 	@Mandatory
 	@Valid
 	@Automapped
-	private Status				status;
+	private StatusCrewMember	status;
 
 	@Mandatory
 	@ValidMoney
