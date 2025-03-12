@@ -1,3 +1,4 @@
+
 package acme.forms;
 
 import java.util.Map;
@@ -18,15 +19,15 @@ public class AdministratorDashboard extends AbstractForm {
 
 	// Attributes -------------------------------------------------------------
 
-    private Map<OperationalScope, Integer>	numberAirports;
+	private Map<OperationalScope, Integer>	numberAirports;
 	private Map<AirlineType, Integer>		numberAirlines;
 	private Double							ratiowithEmailAndPhoneNumber;
 	private Double							ratioActiveAircraft;
 	private Double							ratioNonActiveAircraft;
 	private Double							reviewsWithScoreAbove5;
-	private Double							countNumberOfReviews;  //number of reviews posted over the last 10 weeks
+	private Integer							countNumberOfReviews;  //number of reviews posted over the last 10 weeks
 	private Double							averageNumberOfReviews;
-	private Double							minimumNumberOfReviews;
-	private Double							maximumNumberOfReviews;
+	private Integer							minimumNumberOfReviews;
+	private Integer							maximumNumberOfReviews;
 	private Double							standardDeviationNumberOfReviews;
 }
