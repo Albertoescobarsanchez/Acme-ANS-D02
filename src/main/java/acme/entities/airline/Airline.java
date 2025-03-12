@@ -5,12 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -20,6 +17,8 @@ import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidIATACode;
+import acme.constraints.ValidPhoneNumber;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,8 +39,8 @@ public class Airline extends AbstractEntity {
 	private String				name;
 
 	@Mandatory
+	@ValidIATACode
 	@Column(unique = true)
-	@Pattern(regexp = "^[A-Z]{2}X$")
 	private String				iataCode;
 
 	@Mandatory
@@ -50,14 +49,13 @@ public class Airline extends AbstractEntity {
 	private String				website;
 
 	@Mandatory
-	@Enumerated(EnumType.STRING)
 	@Valid
 	@Automapped
 	private AirlineType			type;
 
 	@Mandatory
-	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				foundationMoment;
 
 	@Optional
@@ -66,7 +64,7 @@ public class Airline extends AbstractEntity {
 	private String				email;
 
 	@Optional
-	@Pattern(regexp = "\\+?\\d{6,15}$")
+	@ValidPhoneNumber
 	@Automapped
 	private String				phoneNumber;
 

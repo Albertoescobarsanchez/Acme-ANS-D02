@@ -48,10 +48,11 @@ public class TrackingLog extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private boolean				accepted;
+	private Boolean				accepted;
 
 	@Optional
 	@ValidString
+	@Automapped
 	private String				resolution;
 
 	// Derived attributes -----------------------------------------------------
@@ -59,8 +60,8 @@ public class TrackingLog extends AbstractEntity {
 	// Relationships ----------------------------------------------------------
 
 	@Mandatory
-	@ManyToOne(optional = false)
 	@Valid
+	@ManyToOne(optional = false)
 	private Claim				claim;
 
 }

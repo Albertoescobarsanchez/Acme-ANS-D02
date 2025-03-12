@@ -3,16 +3,18 @@ package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidString;
+import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,31 +32,36 @@ public class FlightCrewMember extends AbstractRole {
 	@Mandatory
 	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
-	@NotBlank
 	private String				employeeCode;
 
 	@Mandatory
 	@Pattern(regexp = "^\\+?\\d{6,15}$")
-	@NotBlank
+	@Automapped
 	private String				phoneNumber;
 
 	@Mandatory
-	@Size(max = 255)
-	@NotBlank
+	@ValidString
+	@Automapped
 	private String				languageSkills;
 
 	@Mandatory
-	@Enumerated(EnumType.STRING)
+	@Valid
+	@Automapped
 	private Status				status;
 
 	@Mandatory
-	@NotBlank
-	private String				airline;
-
-	@Mandatory
+	@Valid
+	@Automapped
 	private Money				salary;
 
 	@Optional
+	@ValidNumber(min = 0)
+	@Automapped
 	private Integer				yearsExperience;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airline				airline;
 
 }

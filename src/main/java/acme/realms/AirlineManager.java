@@ -7,14 +7,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.URL;
 
 import acme.client.components.basis.AbstractRole;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidIdentifierCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,17 +29,22 @@ public class AirlineManager extends AbstractRole {
 
 	// Attributes -------------------------------------------------------------
 	@Mandatory
-	@NotBlank
-	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
+	@ValidIdentifierCode
 	@Column(unique = true)
 	private String				identifierNumber;
 
-	private int					yearsOfExperience;
 	@Mandatory
+	@ValidNumber(min = 0)
+	@Automapped
+	private Integer				yearsOfExperience;
+
+	@Mandatory
+	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				birthDate;
 
 	@Optional
-	@URL
+	@ValidUrl
+	@Automapped
 	private String				pictureLink;
 }

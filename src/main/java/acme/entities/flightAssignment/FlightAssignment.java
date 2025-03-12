@@ -1,9 +1,8 @@
 
-package acme.entities.booking;
+package acme.entities.flightAssignment;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -11,65 +10,58 @@ import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidMoney;
-import acme.constraints.ValidLastNibble;
-import acme.constraints.ValidLocatorCode;
-import acme.entities.flight.Flight;
-import acme.realms.Customer;
+import acme.client.components.validation.ValidString;
+import acme.entities.leg.Leg;
+import acme.realms.FlightCrewMember;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Booking extends AbstractEntity {
+public class FlightAssignment extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private FlightCrewMember	member;
 
 	@Mandatory
-	@ValidLocatorCode
-	@Column(unique = true)
-	private String				locatorCode;
+	@Valid
+	@Automapped
+	private Duty				duty;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				purchaseMoment;
+	private Date				lastUpdate;
 
 	@Mandatory
 	@Valid
 	@Automapped
-	private TravelClass			travelClass;
+	private Status				status;
 
-	@Mandatory
-	@ValidMoney
-	@Automapped
-	private Money				price;
-
+	@ValidString
 	@Optional
-	@ValidLastNibble
 	@Automapped
-	private String				lastNibble;
+	private String				remarks;
 
-	//Relationships -----------------------------------------------------------
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				publish;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Customer			customer;
-
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Flight				flight;
-
+	private Leg					leg;
 }
