@@ -32,11 +32,6 @@ public class FlightAssignment extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 	@Mandatory
 	@Valid
-	@ManyToOne
-	private FlightCrewMember	member;
-
-	@Mandatory
-	@Valid
 	@Automapped
 	private Duty				duty;
 
@@ -50,8 +45,8 @@ public class FlightAssignment extends AbstractEntity {
 	@Automapped
 	private Status				status;
 
-	@ValidString
 	@Optional
+	@ValidString
 	@Automapped
 	private String				remarks;
 
@@ -64,4 +59,9 @@ public class FlightAssignment extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Leg					leg;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private FlightCrewMember	member;
 }
