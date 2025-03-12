@@ -19,7 +19,7 @@ public class CustomerDashboard extends AbstractForm {
 	// Attributes -------------------------------------------------------------
 
 	private List<String>				lastFiveDestinations;
-	private Double						moneyInBookings;     // money spent in Bookings during the last year
+	private Money						moneyInBookings;     // money spent in Bookings during the last year
 	private Map<TravelClass, Integer>	bookingsByTravelClass;    // their number of bookings grouped by travel class
 	private Money						countBookingCost;    // Cost of their bookings in the last five years
 	private Money						averageBookingCost;
