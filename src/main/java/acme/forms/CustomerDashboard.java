@@ -26,10 +26,10 @@ public class CustomerDashboard extends AbstractForm {
 	private Money						minimumBookingCost;
 	private Money						maximumBookingCost;
 	private Money						standardDeviationBookingCost;
-	private Double						countNumberPassengers;   // Number of passengers in their bookings
+	private Integer						countNumberPassengers;   // Number of passengers in their bookings
 	private Double						averageNumberPassengers;
-	private Double						minimumNumberPassengers;
-	private Double						maximumNumberPassengers;
+	private Integer						minimumNumberPassengers;
+	private Integer						maximumNumberPassengers;
 	private Double						standardDeviationNumberPassengers;
 
 }
