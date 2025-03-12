@@ -18,8 +18,8 @@ import javax.validation.constraints.Pattern;
 @ReportAsSingleViolation
 
 @NotBlank
-@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
-public @interface ValidManagerCode {
+@Pattern(regexp = "^[A-Z0-9]{6,8}$")
+public @interface ValidLocatorCode {
 
 	// Standard validation properties -----------------------------------------
 

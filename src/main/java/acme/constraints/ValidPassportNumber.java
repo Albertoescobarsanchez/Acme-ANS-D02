@@ -18,14 +18,13 @@ import javax.validation.constraints.Pattern;
 @ReportAsSingleViolation
 
 @NotBlank
-@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
-public @interface ValidEmployeeCode {
+@Pattern(regexp = "^[A-Z0-9]{6,9}$")
+public @interface ValidPassportNumber {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{acme.validation.employeeCode.message}";
+	String message() default "{acme.validation.text.message}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
-
 }
