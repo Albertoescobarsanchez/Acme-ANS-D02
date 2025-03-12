@@ -1,6 +1,6 @@
 
 package acme.realms;
 
-public enum Status {
+public enum StatusCrewMember {
 	AVAILABLE, ON_VACATION, ON_LEAVE
 }
