@@ -19,7 +19,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidEmployeeCode;
+import acme.constraints.ValidIdentifierCode;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,7 +36,7 @@ public class AssistanceAgent extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidEmployeeCode
+	@ValidIdentifierCode
 	@Column(unique = true)
 	private String				employeeCode;
 
