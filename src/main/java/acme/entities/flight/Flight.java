@@ -8,12 +8,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.datatypes.Money;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidString;
+import acme.entities.airport.Airport;
 import acme.realms.AirlineManager;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,33 +33,49 @@ public class Flight extends AbstractEntity {
 
 	// Attributes -------------------------------------------------------------
 	@Mandatory
-	@Size(max = 50)
+	@ValidString(max = 50)
+	@Automapped
 	private String				tag;
 
-	private boolean				selfTransfer;
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				selfTransfer;
 
-	private float				cost;
+	@Mandatory
+	@ValidMoney
+	@Automapped
+	private Money				cost;
 
 	@Optional
-	@Size(max = 255)
+	@ValidString
+	@Automapped
 	private String				description;
+
 	@Mandatory
+	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledDeparture;
 
 	@Mandatory
+	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledArrival;
 
 	@Mandatory
-	@NotBlank
-	private String				origin;
+	@Valid
+	@Automapped
+	private Airport				origin;
 
 	@Mandatory
-	@NotBlank
-	private String				destination;
+	@Valid
+	@Automapped
+	private Airport				destination;
 
-	private int					layovers;
+	@Mandatory
+	@ValidNumber(min = 1)
+	@Automapped
+	private Integer				layovers;
 
 	@Mandatory
 	@Valid

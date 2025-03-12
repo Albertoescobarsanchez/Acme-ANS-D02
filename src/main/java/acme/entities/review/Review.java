@@ -1,20 +1,17 @@
 
-package acme.entities.assigment;
+package acme.entities.review;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
@@ -24,42 +21,42 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Log extends AbstractEntity {
+public class Review extends AbstractEntity {
 
-	// Serialisation version --------------------------------------------------
+	// Serialisation version ---------------------
 
 	private static final long	serialVersionUID	= 1L;
 
-	// Attributes -------------------------------------------------------------
+	// Attributtes ------------------------------
 
 	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private FlightAssignment	assigment;
-
-	@Mandatory
-	@Temporal(TemporalType.TIMESTAMP)
-	@ValidMoment(past = true)
+	@ValidString(max = 50)
 	@Automapped
+	private String				name;
+
+	@Mandatory
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
 
 	@Mandatory
 	@ValidString(max = 50)
-	@NotBlank
 	@Automapped
-	private String				type;
+	private String				subject;
 
 	@Mandatory
 	@ValidString
-	@NotBlank
 	@Automapped
-	private String				description;
+	private String				text;
 
-	@Min(0)
-	@Max(10)
-	@ValidNumber
+	@Optional
+	@ValidNumber(min = 0, max = 10)
 	@Automapped
-	@Mandatory
-	private int					severityLevel;
+	private Double				score;
+
+	@Optional
+	@Valid
+	@Automapped
+	private Boolean				recommended;
 
 }

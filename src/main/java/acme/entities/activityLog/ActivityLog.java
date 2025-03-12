@@ -1,32 +1,28 @@
 
-package acme.entities.assigment;
+package acme.entities.activityLog;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.flight.Leg;
-import acme.realms.FlightCrewMember;
+import acme.entities.flightAssignment.FlightAssignment;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class FlightAssignment extends AbstractEntity {
+public class ActivityLog extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
@@ -35,39 +31,28 @@ public class FlightAssignment extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Valid
-	@ManyToOne
-	@Automapped
-	private Leg					leg;
-
-	@Mandatory
-	@Valid
-	@ManyToOne
-	private FlightCrewMember	member;
-
-	@Mandatory
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	@Automapped
-	private Duty				duty;
-
-	@Mandatory
-	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment(past = true)
-	private Date				lastUpdate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				moment;
 
 	@Mandatory
-	@Enumerated(EnumType.STRING)
+	@ValidString(max = 50)
 	@Automapped
-	private Status				status;
+	private String				type;
 
+	@Mandatory
 	@ValidString
-	@Optional
 	@Automapped
-	private String				remarks;
+	private String				description;
+
+	@Mandatory
+	@ValidNumber(min = 0, max = 10)
+	@Automapped
+	private Integer				severityLevel;
 
 	@Mandatory
 	@Valid
-	@Automapped
-	private Boolean				publish;
+	@ManyToOne(optional = false)
+	private FlightAssignment	assigment;
+
 }

@@ -9,7 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
@@ -20,6 +19,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidIdentifierCode;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,7 +36,7 @@ public class AssistanceAgent extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
+	@ValidIdentifierCode
 	@Column(unique = true)
 	private String				employeeCode;
 
@@ -46,20 +46,23 @@ public class AssistanceAgent extends AbstractRole {
 	private String				languages;
 
 	@Mandatory
-	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				startDate;
 
 	@Optional
 	@ValidString
+	@Automapped
 	private String				bio;
 
 	@Optional
 	@ValidMoney
+	@Automapped
 	private Money				salary;
 
 	@Optional
 	@ValidUrl
+	@Automapped
 	private String				photoURL;
 
 	// Derived attributes -----------------------------------------------------
@@ -67,8 +70,8 @@ public class AssistanceAgent extends AbstractRole {
 	// Relationships ----------------------------------------------------------
 
 	@Mandatory
-	@ManyToOne(optional = false)
 	@Valid
+	@ManyToOne(optional = false)
 	private Airline				airline;
 
 }
