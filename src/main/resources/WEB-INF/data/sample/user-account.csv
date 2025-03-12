@@ -18,5 +18,6 @@ user-account-flight-crew-member-05,true,"UserIdentity{name: 'Pablo', surname: 'G
 user-account-customer-01,true,"UserIdentity{name: 'Natalia', surname: 'Sanchez', email: 'customer1@acme.com'}",customer1,customer1
 user-account-customer-02,true,"UserIdentity{name: 'Emma', surname: 'Cabello', email: 'customer2@acme.com'}",customer2,customer2
 user-account-customer-03,true,"UserIdentity{name: 'Jesus', surname: 'Martin', email: 'customer3@acme.com'}",customer3,customer3
-user-account-agent-01,true, "UserIdentity{name: 'Mario', surname: 'Perez', email: 'agent1@acme.com'}", agent1, agent1
-user-account-agent-02,true, "UserIdentity{name: 'Isabel', surname: 'Coronel', email: 'agent2@acme.com'}", agent2, agent2
+user-account-agent-01,true,"UserIdentity{name: 'Mario', surname: 'Perez', email: 'agent1@acme.com'}",agent1,agent1
+user-account-agent-02,true,"UserIdentity{name: 'Isabel', surname: 'Camacho', email: 'agent2@acme.com'}",agent2,agent2
+user-account-agent-03,true,"UserIdentity{name: 'Luis', surname: 'Tello', email: 'agent3@acme.com'}",agent3,agent3
