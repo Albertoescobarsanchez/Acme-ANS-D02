@@ -36,6 +36,7 @@ public class ActivityLog extends AbstractEntity {
 	private Date				moment;
 
 	@Mandatory
+	//TODO: Cambiar a ValidShortText
 	@ValidString(max = 50)
 	@Automapped
 	private String				type;
